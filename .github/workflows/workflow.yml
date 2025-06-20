@@ -35,9 +35,7 @@ jobs:
              -backend-config="bucket=sas-github-workflow" \
              -backend-config="key=workspace/dev/terraform.tfstate" \
              -backend-config="region=us-east-1" \
-             -backend-config="dynamodb_table=terraform-locks" \
-             -backend-config="encrypt=true"
-
+             
       - name: Select Dev Workspace
         run: terraform workspace select dev || terraform workspace new dev
 
