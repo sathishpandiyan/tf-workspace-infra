@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     bucket         = "sas-github-workflow"
     region         = "us-east-1"
-    key            = "workspaceenv/${terraform.workspace}/terraform.tfstate"
+    key            = "workspace/${terraform.workspace}/terraform.tfstate"
     dynamodb_table = "terraform-locks"  
     encrypt = true
   }
