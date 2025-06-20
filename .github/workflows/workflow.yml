@@ -30,11 +30,12 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: |  
-           terraform init \
-             -backend-config="bucket=sas-github-workflow" \
-             -backend-config="key=workspace/dev/terraform.tfstate" \
-             -backend-config="region=us-east-1" \
+        run: terraform init 
+        # run: |  
+        #    terraform init \
+        #      -backend-config="bucket=sas-github-workflow" \
+        #      -backend-config="key=workspace/dev/terraform.tfstate" \
+        #      -backend-config="region=us-east-1" \
              
       - name: Select Dev Workspace
         run: terraform workspace select dev || terraform workspace new dev
@@ -62,12 +63,13 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: |
-          terraform init \
-            -input=false \
-            -backend-config="bucket=sas-github-workflow" \
-            -backend-config="key=workspace/dev/terraform.tfstate" \
-            -backend-config="region=us-east-1" 
+        run: terraform init 
+        # run: |
+        #   terraform init \
+        #     -input=false \
+        #     -backend-config="bucket=sas-github-workflow" \
+        #     -backend-config="key=workspace/dev/terraform.tfstate" \
+        #     -backend-config="region=us-east-1" 
 
       - name: Select Workspace
         run: terraform workspace select dev || terraform workspace new dev
@@ -95,12 +97,13 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: |
-          terraform init \
-            -input=false \
-            -backend-config="bucket=sas-github-workflow" \
-            -backend-config="key=workspace/dev/terraform.tfstate" \
-            -backend-config="region=us-east-1" 
+        run: terraform init 
+        # run: |
+        #   terraform init \
+        #     -input=false \
+        #     -backend-config="bucket=sas-github-workflow" \
+        #     -backend-config="key=workspace/dev/terraform.tfstate" \
+        #     -backend-config="region=us-east-1" 
 
       - run: terraform workspace select prod || terraform workspace new prod
       - run: terraform plan -var-file="prod.tfvars"
@@ -125,12 +128,13 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: |
-          terraform init \
-            -input=false \
-            -backend-config="bucket=sas-github-workflow" \
-            -backend-config="key=workspace/dev/terraform.tfstate" \
-            -backend-config="region=us-east-1" 
+        run: terraform init 
+        # run: |
+        #   terraform init \
+        #     -input=false \
+        #     -backend-config="bucket=sas-github-workflow" \
+        #     -backend-config="key=workspace/dev/terraform.tfstate" \
+        #     -backend-config="region=us-east-1" 
 
       - run: terraform workspace select prod
       - run: terraform apply -auto-approve -var-file="prod.tfvars"
