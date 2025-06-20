@@ -3,8 +3,8 @@ name: Terraform Dev and Prod with Approvals
 on:
   push:
     branches:
-      -main 
-  workflow_dispatch:
+      - main  # Auto-trigger only for dev plan
+  workflow_dispatch:  # Manual trigger for all other actions
 
 permissions:
   id-token: write   # This is required for requesting the JWT
