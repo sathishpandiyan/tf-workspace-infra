@@ -48,8 +48,9 @@ jobs:
     needs: dev-plan
     environment: dev-apply
     steps:
-      - uses: actions/checkout@v4
-      
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
         with:
@@ -57,8 +58,8 @@ jobs:
           role-session-name: OIDC_Github_access
           aws-region: "us-east-1"
 
-      - uses: hashicorp/setup-terraform@v3
-      - run: terraform init
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
       - run: terraform workspace select dev
       - run: terraform apply -auto-approve -var-file="dev.tfvars"
