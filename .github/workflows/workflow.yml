@@ -61,8 +61,21 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - run: terraform workspace select dev
-      - run: terraform apply -auto-approve -var-file="dev.tfvars"
+      - name: Terraform Init
+        run: |
+          terraform init \
+            -input=false \
+            -backend-config="bucket=sas-github-workflow" \
+            -backend-config="key=workspace/dev/terraform.tfstate" \
+            -backend-config="region=us-east-1" \
+            -backend-config="dynamodb_table=terraform-locks" \
+            -backend-config="encrypt=true"
+
+      - name: Select Workspace
+        run: terraform workspace select dev || terraform workspace new dev
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
 
   prod-plan:
     name: Terraform Plan - Prod
